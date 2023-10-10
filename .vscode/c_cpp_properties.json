@@ -1,0 +1,28 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/joahan/catkin_ws/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/joahan/catkin_ws/src/esteban_pkg/include/**",
+        "/home/joahan/catkin_ws/src/ros_basics_tutorials/include/**",
+        "/home/joahan/catkin_ws/src/ros_essentials_cpp/include/**",
+        "/home/joahan/catkin_ws/src/turtlebot3_simulations/turtlebot3_fake/include/**",
+        "/home/joahan/catkin_ws/src/turtlebot3_simulations/turtlebot3_gazebo/include/**",
+        "/home/joahan/catkin_ws/src/turtlebot3/turtlebot3_slam/include/**",
+        "/home/joahan/catkin_ws/src/turtlesim_cleaner/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

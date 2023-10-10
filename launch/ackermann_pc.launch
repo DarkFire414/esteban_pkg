@@ -1,0 +1,12 @@
+<launch>
+    <node name="ackermann_camera_node" pkg="esteban_pkg" type="ackermann_camera.py" output="screen">
+        <param name="cameraIp"      value="http://192.168.1.4:4747/video" />
+        <param name="arucoOrigin"   value="0" />
+        <param name="arucoRobot"    value="5" />
+        <param name="marker_length" value="0.02" />
+        <param name="calibrationFilePath" value="/home/joahan/catkin_ws/src/esteban_pkg/src/Aruco/calibration_results/calibration.pkl" />
+    </node>
+    <node name="ackermann_plotter_node" pkg="esteban_pkg" type="ackermann_plotter.py" output="screen"/>
+    <node name="ackermann_control_node" pkg="esteban_pkg" type="main.py" output="screen" args="0"/>
+</launch>
+<!--# 0 16 0.18-->

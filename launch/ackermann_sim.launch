@@ -1,0 +1,5 @@
+<launch>
+    <node name="ackermann_model_node"   pkg="esteban_pkg" type="ackermann_model.py" output="screen"/>
+    <node name="ackermann_plotter_node"   pkg="esteban_pkg" type="ackermann_plotter.py" output="screen"/>
+    <node name="ackermann_control_node" pkg="esteban_pkg" type="main.py" output="screen" args="1"/>
+</launch>
