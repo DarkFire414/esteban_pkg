@@ -219,9 +219,9 @@ class Ackermann_Control:
         integral = 0
 
         # Constantes de control
-        ki = 0.1
-        kp = 1
-        k_angular = 6
+        ki = 0.01
+        kp = 0.001
+        k_angular = 10
 
         offset = 0.14
 

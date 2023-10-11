@@ -25,7 +25,7 @@ class Ackermann_Model:
         self.linear_velocitySaturationValueMin = 0.14
         self.linear_velocitySaturationValueMax = 0.25
 
-        #   Lingitud del vehículo
+        #   Lingitud del vehículo de centro a centro de cada rueda
         self.L = 0.145
 
         self.x = 0

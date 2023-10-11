@@ -43,12 +43,14 @@ if __name__ == '__main__':
         print("\t\t a) Detener a Esteban")
         print("\t\t b) Mover a Esteban a un punto")
         print("\t\t c) Mover a Esteban a una pose")
-        print("\t\t d) Seguir una trayectoria con Esteban")
 
         if isSimulation:
-            print("\t\t e) Establecer condiciones iniciales")
+            print("\t\t d) Establecer condiciones iniciales")
+        
+        print("\t\t e) Seguir trayectoria 1 con Esteban (Función sin())")
+        print("\t\t f) Seguir trayectoria 2 con Esteban (Función cuadrada)")
             
-        print("\t\t f) Salir")
+        print("\t\t q) Salir")
 
         while 1:
             res = input("\n\t Ingrese la opción: ")
@@ -68,20 +70,26 @@ if __name__ == '__main__':
                 thetad = float(input("\t\t thetad (grad) = "))*3.1416/180.0
                 thread = threading.Thread(target=control_fcn, args=(myControl, 2, xd, yd, thetad))
                 thread.start()
-            
+
             elif res == 'd':
-                path1x = np.arange(0.2, 3.0, 0.1)
-                path1y = np.sin(path1x*2.0-0.8)+1
-                thread = threading.Thread(target=control_fcn, args=(myControl, 3, path1x, path1y, 0))
-                thread.start()
-            
-            elif res == 'e':
                 position_msg.pose.pose.position.x = float(input("\t\t xd = "))
                 position_msg.pose.pose.position.y = float(input("\t\t yd = "))
                 position_msg.pose.pose.orientation.z = float(input("\t\t thetad (grad) = "))*3.1416/180.0
                 publiser.publish(position_msg)
 
+            elif res == 'e':
+                path1x = np.arange(0.2, 3.0, 0.1)
+                path1y = np.sin(path1x*2.0-0.8)+1
+                thread = threading.Thread(target=control_fcn, args=(myControl, 3, path1x, path1y, 0))
+                thread.start()
+            
             elif res == 'f':
+                path1y = np.array([0.5, 1.5, 1.5, 0.5, 0.5, 0.5, 1.5, 1.5])
+                path1x = np.array([0.5, 0.5, 1.5, 1.5, 2.5, 2.5, 2.5, 3.0])
+                thread = threading.Thread(target=control_fcn, args=(myControl, 3, path1x, path1y, 0))
+                thread.start()
+            
+            elif res == 'q':
                 break
 
         # Ejecutar la función de forma normal

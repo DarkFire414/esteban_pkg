@@ -42,7 +42,7 @@ class Ackermann_Plotter:
 
         # Matplotlib graph
         # Create a figure
-        figure = Figure(figsize=(5, 5), dpi=150)
+        figure = Figure(figsize=(6.5, 5), dpi=150)
         self.figure_canvas = FigureCanvasTkAgg(figure, master=self.root)
         self.figure_canvas.get_tk_widget().grid(
             column=0,
@@ -69,11 +69,13 @@ class Ackermann_Plotter:
                 pady=5
             )
 
-        # Trayectoria
-        #self.path1y = np.array([0.5, 0.5, 1.0, 1.0, 0.5])
-        #self.path1x = np.array([1.0, 1.5, 2.0, 2.5, 3.0 ])
+        # Función sin()
         self.path1x = np.arange(0.2, 3.0, 0.1)
         self.path1y = np.sin(self.path1x*2.0-0.8)+1
+
+        # Señal cuadrada
+        #self.path1y = np.array([0.5, 1.5, 1.5, 0.5, 0.5, 0.5, 1.5, 1.5])
+        #self.path1x = np.array([0.5, 0.5, 1.5, 1.5, 2.5, 2.5, 2.5, 3.0])
 
         # Actualiza el gráfico
         self.update_plot()
@@ -123,7 +125,7 @@ class Ackermann_Plotter:
 
         self.axes.set_title('Position')
         self.figure_canvas.draw()
-        self.root.after(250, self.update_plot)
+        self.root.after(200, self.update_plot)
     
     def rotatez(self, x, y, theta):
         """
