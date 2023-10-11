@@ -48,7 +48,8 @@ class Ackermann_Plotter:
             column=0,
             row=0,
             padx=5,
-            pady=5
+            pady=5,
+            columnspan=5
         )
 
         # Create axes
@@ -66,9 +67,42 @@ class Ackermann_Plotter:
                 column=0,
                 row=1,
                 padx=5,
-                pady=5
+                pady=5,
+                columnspan=2
             )
 
+        self.xpositionLabel = tk.Label(
+            self.root,
+            text='x = 0.0 m',
+        )
+        self.xpositionLabel.grid(
+            column=2,
+            row=1,
+            padx=5,
+            pady=5
+        )
+
+        self.ypositionLabel = tk.Label(
+            self.root,
+            text='y = 0.0 m'
+        )
+        self.ypositionLabel.grid(
+            column=3,
+            row=1,
+            padx=5,
+            pady=5
+        )
+
+        self.thetaLabel = tk.Label(
+            self.root,
+            text='theta = 0.0 rad'
+        )
+        self.thetaLabel.grid(
+            column=4,
+            row=1,
+            padx=5,
+            pady=5
+        )
         # Función sin()
         self.path1x = np.arange(0.2, 3.0, 0.1)
         self.path1y = np.sin(self.path1x*2.0-0.8)+1
@@ -79,6 +113,8 @@ class Ackermann_Plotter:
 
         # Actualiza el gráfico
         self.update_plot()
+
+        self.update_labels()
 
         self.root.mainloop()
 
@@ -97,11 +133,18 @@ class Ackermann_Plotter:
         self.x= pose_message.pose.pose.position.x
         self.y= pose_message.pose.pose.position.y
         self.theta = pose_message.pose.pose.orientation.z
+    
+    def update_labels(self):
+        self.xpositionLabel.config(text='x = {:.3} m'.format(self.x))
+        self.ypositionLabel.config(text='y = {:.3} m'.format(self.y))
+        self.thetaLabel.config(text='theta = {:.3} rad'.format(self.theta))
+
+        self.root.after(200, self.update_labels)
 
     def update_plot(self):
         """
         Actualiza el gráfico para mostrar la pocisión y orientación del robot.
-        Esta función se ejecuta cada 250 ms
+        Esta función se ejecuta cada 200 ms
         """
         # Ackermann vehicle coords
         # Rotación respecto al origen
