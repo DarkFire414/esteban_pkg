@@ -22,6 +22,9 @@ def control_fcn(control_obj, action, xd, yd, thetad):
     elif action == 3:
         control_obj.follow_path(xd, yd)
 
+    elif action == 4:
+        control_obj.stanley()
+
 if __name__ == '__main__':
     isSimulation = 0
     args = sys.argv
@@ -49,6 +52,7 @@ if __name__ == '__main__':
         
         print("\t\t e) Seguir trayectoria 1 con Esteban (Función sin())")
         print("\t\t f) Seguir trayectoria 2 con Esteban (Función cuadrada)")
+        print("\t\t g) Seguir trayectiria stanley")
             
         print("\t\t q) Salir")
 
@@ -87,6 +91,12 @@ if __name__ == '__main__':
                 path1y = np.array([0.5, 1.5, 1.5, 0.5, 0.5, 0.5, 1.5, 1.5])
                 path1x = np.array([0.5, 0.5, 1.5, 1.5, 2.5, 2.5, 2.5, 3.0])
                 thread = threading.Thread(target=control_fcn, args=(myControl, 3, path1x, path1y, 0))
+                thread.start()
+            
+            elif res == 'g':
+                path1y = np.array([0.5, 1.5, 1.5, 0.5, 0.5, 0.5, 1.5, 1.5])
+                path1x = np.array([0.5, 0.5, 1.5, 1.5, 2.5, 2.5, 2.5, 3.0])
+                thread = threading.Thread(target=control_fcn, args=(myControl, 4, path1x, path1y, 0))
                 thread.start()
             
             elif res == 'q':

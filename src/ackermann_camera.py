@@ -95,7 +95,7 @@ if __name__ == '__main__':
     while True:
         # Captura un fotograma de la cámara
         ret, frame = cap.read()
-
+        
         # Convierte el fotograma a escala de grises
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 

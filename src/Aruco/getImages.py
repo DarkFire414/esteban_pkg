@@ -8,7 +8,7 @@ para guardar la imagen.
 import cv2
 
 # Usar la cámara a calibrar
-cap = cv2.VideoCapture('http://192.168.1.4:4747/video')
+cap = cv2.VideoCapture('http://192.168.0.104:4747/video')
 
 num = 0
 
