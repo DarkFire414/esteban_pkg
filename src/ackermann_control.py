@@ -290,7 +290,7 @@ class Ackermann_Control:
     
     def stanley(self):
         print("stanley")
-        rate = rospy.Rate(10000) # Hz
+        rate = rospy.Rate(100) # Hz
 
         rows = 40
         cols = 40
@@ -333,7 +333,7 @@ class Ackermann_Control:
 
         theta_old = 0.0
 
-        while T>= time and lastIndex > target_ind:
+        while T>= time and lastIndex > target_ind and not self.stopSim:
             acc_i = control.pid_control(pathv, ack.v, C.dt)
             gamma_i, target_ind, efa = control.stanley_control(ack, traj.px, traj.py, traj.ptheta, target_ind)
 

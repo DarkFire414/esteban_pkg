@@ -164,6 +164,7 @@ class Ackermann_Plotter:
         self.axes.set_ylabel('y (m)')
         self.axes.set_xlim((-0.2, 3))
         self.axes.set_ylim((-0.2, 2))
+        self.axes.set_aspect('equal')
         self.axes.grid(True)
 
         self.axes.set_title('Position')
