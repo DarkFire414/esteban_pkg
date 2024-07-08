@@ -4,6 +4,11 @@
 
 ## Características
 
-<video width="320" height="240" controls>
-  <source src="/resources/videos/APF.mkv" type="video/mkv">
-</video>
+![Obstacle avoidance](resources/images/obstacle-avoidance.gif)
+
+https://github.com/DarkFire414/esteban_pkg/blob/main/resources/videos/APF.mp4
+
+## Instalación
+
+## ¿Cómo ejecutarlo?
+
