@@ -1,0 +1,30 @@
+<launch>
+    <!-- Paths -->
+    <arg name="pkg_name"        default="esteban_pkg"                 doc="Package Name" />
+    <arg name="rviz_config"     default="rviz_sim_view"                     doc="Name (without extension) of RViZ configuration file in 'rviz' folder" />
+    <arg name="package_path"    default="$(eval find(arg('pkg_name')))"     doc="Variable auxiliar (No modificar)" />
+    <!-- Params -->
+    <param name="is_simulation"     type="boolean" value="true" />
+    <rosparam command="load" file="$(arg package_path)/config/params.yaml" />
+    
+    <!-- Kinematic Model -->
+    <node name="ackermann_model_node"   pkg="$(arg pkg_name)" type="ackermann_model.py" output="screen" />
+
+    <!-- Robot State Publisher -->
+    <arg name="robot_file"      default="robot.urdf"                        doc="Name (without extension) of the xacro file of the robot" />
+    
+    <!-- Robot State Publisher -->
+    <include file="$(arg package_path)/launch/rsp.launch">
+        <arg name="pkg_name"        value="$(arg pkg_name)" />
+        <arg name="file_subpath"    value="$(arg robot_file)" />
+        <arg name="package_path"    value="$(arg package_path)" />
+    </include>
+
+    <!-- Costmap -->
+    <node name="occupancy_grid_node" pkg="$(arg pkg_name)" type="costmap.py" output="screen" />
+
+    <!-- Path planner -->
+    <node name="path_planner_node"  pkg="$(arg pkg_name)" type="path_planner.py" output="screen" />
+
+    <node name="rviz" type="rviz" pkg="rviz" args="-d $(arg package_path)/rviz/$(arg rviz_config).rviz" required="true" />
+</launch>

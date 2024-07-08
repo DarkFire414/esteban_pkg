@@ -1,0 +1,6 @@
+<launch>
+    <arg name="pkg_name"        default="esteban_pkg"                 doc="Package Name" />
+    <arg name="package_path"    default="$(eval find(arg('pkg_name')))"     doc="Variable auxiliar (No modificar)" />
+
+    <node name="path_tracking_node" pkg="$(arg pkg_name)" type="main.py" output="screen"/>
+</launch>

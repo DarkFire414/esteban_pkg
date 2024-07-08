@@ -1,0 +1,65 @@
+algoritmo: "D"    # A: A*, D: Dijkstra, C: APF
+
+# Path Tracking Controller (Stanley)
+stanley: {
+  rate: 100   # Frecuencia de actualización [Hz]
+}
+
+# Ganancias del controlador Stanley
+gains: {
+  k:  15.0,   # Ganancia efa
+  kv: 1.0     # Ganancia de suavidad
+}
+
+# Robot móvil
+robot: {
+  # Variables físicas [m]
+  RF: 0.258,            # Longitud de extremo delantero a extremo trasero
+  RB: 0.084,            # Longitud de extremo trasero a eje trasero
+  WB: 0.137,            # Longitud de eje trasero a delantero
+  TR: 0.031,            # Radio de las ruedas
+  W:  0.190,            # Ancho del robot
+  WD: 0.119,            # Separación lateral de las ruedas
+  TW: 0.026,            # Ancho de la rueda
+  H:  0.115,            # Altura
+  gamma_sat: 0.5236,    # Ángulo máximo que puede tomar la dirección [rad]
+
+  # Modelo cinemático de bicicleta (Simulación)
+  model: {
+    # Condiciones iniciales
+    x0: 0.0,            # Posición en x [m]
+    y0: 0.0,            # Posición en y [m]
+    theta0: 0.0,        # Orientación en z [rad]
+    gamma0: 0.0,        # Dirección [rad]
+    v0: 0.0,            # Velocidad [m/s]
+    rate: 1000          # Frecuancia de actualización [Hz]
+  }
+}
+
+# Cámara
+#   Localización (Aruco)
+camera: {
+  #ip: "http://192.168.1.105:4747/video",    # Ip de Droidcam
+  ip: "http://192.168.0.103:4747/video",    # Ip de Droidcam
+  aruco_origin: 0,                          # Id del aruco en el origen
+  aruco_robot: 18,                          # Id del aruco en el robot
+  marker_length: 0.15,                      # Longitud del aruco [m]
+  window_size: 3,                           # Tamaño del filtro de media móvil
+  rate: 1000                                # Frecuencia de actualización [Hz]
+}
+#   Detector de obstáculos
+costmap_obstacles: {
+  rate: 100           # Frecuencia de actualización [Hz]
+}
+
+# Costmap
+costmap: {
+  rows: 37,           # Filas del mapa en celdas  
+  cols: 30,           # Columnas del mapa en celdas
+  resolution: 0.05,   # [m/celda]
+  wall_inflation: 2,  # Inflación en las paredes [celdas] (En modo simulación afecta igual a los obstáculos)
+  obstacle_inflation: 3, #Inflación de los obstáculos (Implementación)
+  rate: 1             # Frecuencia de actualización [Hz]
+}
+
+
