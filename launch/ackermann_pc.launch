@@ -1,0 +1,42 @@
+<launch>
+    <!-- Paths -->
+    <arg name="pkg_name"            default="esteban_pkg"                 doc="Package Name" />
+    <arg name="rviz_config"         default="rviz_robot_view"                   doc="Name (without extension) of RViZ configuration file in 'rviz' folder" />
+    <arg name="package_path"        default="$(eval find(arg('pkg_name')))"     doc="Variable auxiliar (No modificar)" />
+    <!-- Params -->
+    <param name="is_simulation"     type="boolean" value="false" />
+    <rosparam command="load" file="$(arg package_path)/config/params.yaml" />
+
+    <!-- Localization (Aruco) -->
+    <arg name="calib_file_name"     default="calibration"                       doc="Name (without extension) of calibration file .pkl" />
+    <arg name="calib_file_path"     default="$(arg package_path)/src/Aruco/calibration_results/$(arg calib_file_name).pkl" doc="Variable auxiliar (No modificar)" />
+    
+    <!-- Robot State Publisher -->
+    <arg name="robot_file"          default="robot.urdf"                        doc="Name (without extension) of the xacro file of the robot" />
+    
+    <!-- Camera driver-->
+    <node name="camera_driver_node" pkg="$(arg pkg_name)" type="camera_driver.py" output="screen" />
+
+    <!-- Aruco localization -->
+    <node name="ackermann_camera_node" pkg="$(arg pkg_name)" type="localization.py" output="screen">
+        <param name="calibrationFilePath"   type="string"   value="$(arg calib_file_path)" />
+    </node>
+
+    <!-- Robot State Publisher -->
+    <include file="$(arg package_path)/launch/rsp.launch">
+        <arg name="pkg_name"        value="$(arg pkg_name)" />
+        <arg name="file_subpath"    value="$(arg robot_file)" />
+        <arg name="package_path"    value="$(arg package_path)" />
+    </include>
+
+    <!-- Costmap -->
+    <node name="occupancy_grid_node" pkg="$(arg pkg_name)" type="costmap.py" output="screen" />
+    <node name="distancias_publisher" pkg="$(arg pkg_name)" type="generamapa_mod.py" output="screen">
+        <param name="calibrationFilePath"   type="string"   value="$(arg calib_file_path)" />
+    </node>
+
+    <!-- Path planner -->
+    <node name="path_planner_node"  pkg="$(arg pkg_name)" type="path_planner.py" output="screen" />
+
+    <node name="rviz" type="rviz" pkg="rviz" args="-d $(arg package_path)/rviz/$(arg rviz_config).rviz" required="true" />
+</launch>

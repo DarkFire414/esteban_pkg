@@ -1,0 +1,2 @@
+iteracion	longitud	tiempo calculo
+2.0000	172.3629	0.0595
