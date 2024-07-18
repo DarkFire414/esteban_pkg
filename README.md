@@ -4,4 +4,8 @@
 
 ## Funcionamiento
 
+En el siguiente enlace de Youtube, se muestra un video demostrativo de cada algoritmo evaluado (Dijkstra, A* y Campos Potenciales)
+
+https://youtu.be/aA__u1j6Fbw?si=lvCmOyOpBwgdVoeG
+
 ![Obstacle avoidance](resources/images/obstacle-avoidance.gif)
