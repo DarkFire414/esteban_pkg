@@ -4,8 +4,9 @@
 
 ## Funcionamiento
 
-En el siguiente enlace de Youtube, se muestra un video demostrativo de cada algoritmo evaluado (Dijkstra, A* y Campos Potenciales)
+En el siguiente [Video demostrativo](https://www.youtube.com/watch?v=aA__u1j6Fbw) de Youtube, se muestra un video demostrativo de cada algoritmo evaluado (Dijkstra, A* y Campos Potenciales)
 
-https://youtu.be/aA__u1j6Fbw?si=lvCmOyOpBwgdVoeG
+[![Video demostrativo](https://img.youtube.com/vi/aA__u1j6Fbw/0.jpg)](https://www.youtube.com/watch?v=aA__u1j6Fbw)
 
+Funcioamiento en físico.
 ![Obstacle avoidance](resources/images/obstacle-avoidance.gif)
